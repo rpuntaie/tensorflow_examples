@@ -1,5 +1,6 @@
 course_v1/**
 course_v2/**
+course_lite/**
 *.*
 !*.py
 !.gitignore
