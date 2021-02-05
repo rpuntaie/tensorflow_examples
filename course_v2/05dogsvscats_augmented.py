@@ -272,9 +272,6 @@ model.compile(optimizer='adam',
 model.summary()
 
 ### Train the model
-# It's time we train our network.
-# Since our batches are coming from a generator (`ImageDataGenerator`), we'll use
-# `fit_generator` instead of `fit`.
 
 epochs=100
 
@@ -288,7 +285,7 @@ if os.path.exists(saved):
     else:
         history = None
 else:
-    history = model.fit_generator(
+    history = model.fit(
         train_data_gen,
         steps_per_epoch=int(np.ceil(total_train / float(BATCH_SIZE))),
         epochs=epochs,

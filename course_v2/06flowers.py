@@ -335,13 +335,6 @@ model.compile(optimizer='adam',
 
 # # TODO: Train the Model
 #
-# In the cell below, train your model using the **fit_generator** function
-# instead of the usual **fit** function. We have to use the `fit_generator`
-# function because we are using the **ImageDataGenerator** class to generate
-# batches of training and validation data for our model. Train the model for 80
-# epochs and make sure you use the proper parameters in the `fit_generator`
-# function.
-
 epochs = 80
 
 saved = 'flowers.h5'
@@ -354,7 +347,7 @@ if os.path.exists(saved):
     else:
         history = None
 else:
-    history = model.fit_generator(
+    history = model.fit(
         train_data_gen,
         steps_per_epoch=int(np.ceil(train_data_gen.n / float(batch_size))),
         epochs=epochs,
