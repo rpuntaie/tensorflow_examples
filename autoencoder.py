@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Vanilla Autoencoder
 # https://colab.research.google.com/github.com/tensorflow/examples/blob/master/community/en/autoencoder.ipynb

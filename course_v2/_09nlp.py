@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Tokenizing text and creating sequences for sentences
 # courses/udacity_intro_to_tensorflow_for_deep_learning/l09c01_nlp_turn_words_into_tokens.ipynb

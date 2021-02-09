@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #courses/udacity_intro_to_tensorflow_for_deep_learning/l08c01_common_patterns.ipynb
 

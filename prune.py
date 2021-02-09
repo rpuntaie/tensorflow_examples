@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # https://www.tensorflow.org/model_optimization/guide/pruning/comprehensive_guide
 

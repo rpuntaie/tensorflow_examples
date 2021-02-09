@@ -1,14 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 Masking, Padding, Embedding
 """
 
-import matplotlib
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-import tensorflow as tf
+from include_tf import *
 
 raw_inputs = [
     [711, 632, 71],

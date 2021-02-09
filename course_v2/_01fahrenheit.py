@@ -1,4 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
+from includes import *
 
 #tensorflow_examples/courses/udacity_intro_to_tensorflow_for_deep_learning/l02c01_celsius_to_fahrenheit.ipynb
 
@@ -6,13 +8,6 @@ f = lambda c: c*1.8 + 32
 #we will give TensorFlow some sample Celsius values (0, 8, 15, 22, 38)
 #and their corresponding Fahrenheit values (32, 46, 59, 72, 100).
 #Then, we will train a model that figures out the above formula through the training process.
-
-import tensorflow as tf
-
-import numpy as np
-import logging
-logger = tf.get_logger()
-logger.setLevel(logging.ERROR)
 
 #As we saw before, supervised Machine Learning is all about figuring out an
 #algorithm given a set of inputs and outputs. Since the task in this Codelab is
@@ -22,9 +17,6 @@ logger.setLevel(logging.ERROR)
 
 celsius_q    = np.array([-40, -10,  0,  8, 15, 22,  38],  dtype=float)
 fahrenheit_a = np.array([-40,  14, 32, 46, 59, 72, 100],  dtype=float)
-
-for i,c in enumerate(celsius_q):
-  print("{} degrees Celsius = {} degrees Fahrenheit".format(c, fahrenheit_a[i]))
 
 ### Some Machine Learning terminology
 # - **Feature**
@@ -57,7 +49,9 @@ for i,c in enumerate(celsius_q):
 #Fahrenheit. (In a multi-layered network, the size and shape of the layer would
 #             need to match the `input_shape` of the next layer.)
 
-l0 = tf.keras.layers.Dense(units=1, input_shape=[1])
+def model():
+
+  l0 = tf.keras.layers.Dense(units=1, input_shape=[1])
 
 ### Assemble layers into the model
 #Once layers are defined, they need to be assembled into a model. The Sequential
@@ -66,7 +60,7 @@ l0 = tf.keras.layers.Dense(units=1, input_shape=[1])
 #
 #This model has just a single layer, l0.
 
-model = tf.keras.Sequential([l0])
+  model = tf.keras.Sequential([l0])
 
 #**Note**
 #
@@ -84,8 +78,10 @@ model = tf.keras.Sequential([l0])
 #- **Optimizer function** — A way of adjusting internal values in order to reduce the loss.
 
 
-model.compile(loss='mean_squared_error',
-              optimizer=tf.keras.optimizers.Adam(0.1))
+  model.compile(loss='mean_squared_error',
+                optimizer=tf.keras.optimizers.Adam(0.1))
+
+  return model
 
 #These are used during training (`model.fit()`, below) to first calculate the
 #loss at each point, and then improve it. In fact, the act of calculating the
@@ -130,8 +126,12 @@ model.compile(loss='mean_squared_error',
 #`epochs` argument specifies how many times this cycle should be run, and the
 #`verbose` argument controls how much output the method produces.
 
-history = model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)
-print("Finished training the model")
+def fit(model):
+
+  history = model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)
+  print("Finished training the model")
+
+  return history
 
 #In later videos, we will go into more detail on what actually happens here and
 #how a Dense layer actually works internally.
@@ -148,10 +148,11 @@ print("Finished training the model")
 #and then has a steady, slow improvement until it is very near "perfect" towards
 #the end.
 
-import matplotlib.pyplot as plt
-plt.xlabel('Epoch Number')
-plt.ylabel("Loss Magnitude")
-plt.plot(history.history['loss'])
+def test(model, history):
+
+  plt.xlabel('Epoch Number')
+  plt.ylabel("Loss Magnitude")
+  plt.plot(history.history['loss'])
 
 ## Use the model to predict values
 #
@@ -162,7 +163,7 @@ plt.plot(history.history['loss'])
 #So, for example, if the Celsius value is 100, what do you think the Fahrenheit
 #result will be? Take a guess before you run this code.
 
-print(model.predict([100.0]),f(100.0))
+  print(model.predict([100.0]),f(100.0))
 
 #The correct answer is $100 \times 1.8 + 32 = 212$, so our model is doing really well.
 
@@ -179,7 +180,7 @@ print(model.predict([100.0]),f(100.0))
 ## Looking at the layer weights
 #Finally, let's print the internal variables of the Dense layer. 
 
-print("These are the layer variables: {}".format(l0.get_weights()))
+  print("These are the layer variables: {}".format(l0.get_weights()))
 
 #The first variable is close to ~1.8 and the second to ~32. These values 
 #(1.8 and 32)
@@ -203,18 +204,20 @@ print("These are the layer variables: {}".format(l0.get_weights()))
 #Just for fun, what if we created more Dense layers with different units, which
 #therefore also has more variables?
 
-l0 = tf.keras.layers.Dense(units=4, input_shape=[1])
-l1 = tf.keras.layers.Dense(units=4)
-l2 = tf.keras.layers.Dense(units=1)
-model = tf.keras.Sequential([l0, l1, l2])
-model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))
-model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)
-print("Finished training the model")
-print(model.predict([100.0]))
-print("Model predicts that 100 degrees Celsius is: {} degrees Fahrenheit".format(model.predict([100.0])))
-print("These are the l0 variables: {}".format(l0.get_weights()))
-print("These are the l1 variables: {}".format(l1.get_weights()))
-print("These are the l2 variables: {}".format(l2.get_weights()))
+def experiment():
+
+  l0 = tf.keras.layers.Dense(units=4, input_shape=[1])
+  l1 = tf.keras.layers.Dense(units=4)
+  l2 = tf.keras.layers.Dense(units=1)
+  model = tf.keras.Sequential([l0, l1, l2])
+  model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))
+  model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)
+  print("Finished training the model")
+  print(model.predict([100.0]))
+  print("Model predicts that 100 degrees Celsius is: {} degrees Fahrenheit".format(model.predict([100.0])))
+  print("These are the l0 variables: {}".format(l0.get_weights()))
+  print("These are the l1 variables: {}".format(l1.get_weights()))
+  print("These are the l2 variables: {}".format(l2.get_weights()))
 
 #As you can see, this model is also able to predict the corresponding Fahrenheit
 #value really well. But when you look at the variables (weights) in the `l0` and
@@ -222,3 +225,11 @@ print("These are the l2 variables: {}".format(l2.get_weights()))
 #hides the "simple" form of the conversion equation.
 
 #Stay tuned for the upcoming video on how Dense layers work for the explanation.
+
+def main():
+  m = model()
+  h = fit(m)
+  test(m,h)
+
+if __name__ == "__main__":
+  main()

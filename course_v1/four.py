@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #tensorflow_examples/courses/udacity_deep_learning/4_convolutions.ipynb
 
