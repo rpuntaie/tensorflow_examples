@@ -12,7 +12,7 @@ from six.moves import cPickle as pickle
 
 url = 'https://commondatastorage.googleapis.com/books1000/'
 last_percent_reported = None
-data_root = '.' # Change me to store data elsewhere
+data_root = '../data' # Change me to store data elsewhere
 
 def download_progress_hook(count, blockSize, totalSize):
   """A hook to report the progress of a download. This is mostly intended for users with
@@ -20,7 +20,6 @@ def download_progress_hook(count, blockSize, totalSize):
   """
   global last_percent_reported
   percent = int(count * blockSize * 100 / totalSize)
-
   if last_percent_reported != percent:
     if percent % 5 == 0:
       sys.stdout.write("%s%%" % percent)
@@ -28,9 +27,8 @@ def download_progress_hook(count, blockSize, totalSize):
     else:
       sys.stdout.write(".")
       sys.stdout.flush()
-      
     last_percent_reported = percent
-        
+
 def maybe_download(filename, expected_bytes, force=False):
   """Download a file if not present, and make sure it's the right size."""
   dest_filename = os.path.join(data_root, filename)
@@ -180,7 +178,6 @@ def merge_datasets(pickle_files, train_size, valid_size=0):
           valid_labels[start_v:end_v] = label
           start_v += vsize_per_class
           end_v += vsize_per_class
-                    
         train_letter = letter_set[vsize_per_class:end_l, :, :]
         train_dataset[start_t:end_t, :, :] = train_letter
         train_labels[start_t:end_t] = label
@@ -189,10 +186,8 @@ def merge_datasets(pickle_files, train_size, valid_size=0):
     except Exception as e:
       print('Unable to process data from', pickle_file, ':', e)
       raise
-    
   return valid_dataset, valid_labels, train_dataset, train_labels
-            
-            
+
 train_size = 200000
 valid_size = 10000
 test_size = 10000

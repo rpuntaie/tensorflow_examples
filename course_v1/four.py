@@ -8,7 +8,7 @@ from six.moves import cPickle as pickle
 from six.moves import range
 from tensorflow.python.training import gradient_descent
 
-pickle_file = 'notMNIST.pickle'
+pickle_file = '../data/notMNIST.pickle'
 
 with open(pickle_file, 'rb') as f:
   save = pickle.load(f)

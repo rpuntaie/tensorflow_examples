@@ -337,7 +337,7 @@ model.compile(optimizer='adam',
 #
 epochs = 80
 
-saved = 'flowers.h5'
+saved = '../data/flowers.h5'
 historied = saved+'.history.pickle'
 if os.path.exists(saved):
     model = tf.keras.models.load_model(saved)

@@ -112,7 +112,7 @@ model.compile(
     optimizer='adam',
     metrics=['accuracy'])
 
-export_dir = 'fashiondata/1'
+export_dir = '../data/fashiondata/1'
 if not os.path.exists(export_dir):
   model.fit(train_batches, 
             epochs=10,
@@ -133,7 +133,7 @@ converter = tf.lite.TFLiteConverter.from_saved_model(export_dir)
 converter.optimizations = [optimization]
 tflite_model = converter.convert()
 
-tflite_model_file = 'fashiondata/model.tflite'
+tflite_model_file = '../data/fashiondata/model.tflite'
 
 with open(tflite_model_file, "wb") as f:
   f.write(tflite_model)
@@ -227,7 +227,7 @@ plt.show()
 # try:
 #   from google.colab import files
 #   files.download(tflite_model_file)
-#   files.download('fashiondata/labels.txt')
+#   files.download('../data/fashiondata/labels.txt')
 # except:
 #   pass
 # # Deploying TFLite model

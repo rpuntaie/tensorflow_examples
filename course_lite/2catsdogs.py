@@ -127,7 +127,7 @@ hist = model.fit(train_batches,
                     verbose=0)
 
 ## Export the model
-CATS_VS_DOGS_SAVED_MODEL = "catsdogsdata/1"
+CATS_VS_DOGS_SAVED_MODEL = "../data/catsdogsdata/1"
 
 #Export the SavedModel
 tf.saved_model.save(model, CATS_VS_DOGS_SAVED_MODEL)
@@ -248,15 +248,14 @@ plot_image(index, predictions, test_labels, test_imgs)
 plt.show()
 
 # # Download the model.
-# # **NOTE: You might have to run to the cell below twice**
 # 
 # labels = ['cat', 'dog']
-# with open('catsdogsdata/catsdogslabels.txt', 'w') as f:
+# with open('../data/catsdogsdata/catsdogslabels.txt', 'w') as f:
 #   f.write('\n'.join(labels))
 # try:
 #   from google.colab import files
-#   files.download('catsdogsdata/catsdogs.tflite')
-#   files.download('catsdogsdata/catsdogslabels.txt')
+#   files.download('../data/catsdogsdata/catsdogs.tflite')
+#   files.download('../data/catsdogsdata/catsdogslabels.txt')
 # except:
 #   pass
 # 
@@ -272,7 +271,7 @@ plt.show()
 #   image = tf.cast(image * 255.0, tf.uint8)
 #   image = tf.squeeze(image).numpy()
 #   pil_image = Image.fromarray(image)
-#   pil_image.save('test_images/{}_{}.jpg'.format(class_names[label[0]], index))
+#   pil_image.save('../data/test_images/{}_{}.jpg'.format(class_names[label[0]], index))
 # 
 # # !ls test_images
 # 

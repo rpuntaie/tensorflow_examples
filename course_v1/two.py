@@ -11,7 +11,7 @@ from tensorflow.python.training import gradient_descent
 image_size = 28
 num_labels = 10
 
-pickle_file = 'notMNIST.pickle'
+pickle_file = '../data/notMNIST.pickle'
 
 with open(pickle_file, 'rb') as f:
   save = pickle.load(f)

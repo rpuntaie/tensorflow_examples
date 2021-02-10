@@ -198,7 +198,7 @@ model.summary()
 ### Train the model
 
 EPOCHS = 100
-saved = 'catsvsdogs.h5'
+saved = '../data/catsvsdogs.h5'
 historied = saved+'.history.pickle'
 if os.path.exists(saved):
     model = tf.keras.models.load_model(saved)
@@ -246,7 +246,7 @@ if history:
     plt.plot(epochs_range, val_loss, label='Validation Loss')
     plt.legend(loc='upper right')
     plt.title('Training and Validation Loss')
-    plt.savefig('./foo.png')
+    plt.savefig('../data/foo.png')
     plt.show()
 
 # As we can see from the plots, training accuracy and validation accuracy are off

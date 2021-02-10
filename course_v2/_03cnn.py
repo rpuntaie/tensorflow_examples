@@ -112,7 +112,7 @@ BATCH_SIZE = 32
 train_dataset = train_dataset.cache().repeat().shuffle(num_train_examples).batch(BATCH_SIZE)
 test_dataset = test_dataset.cache().batch(BATCH_SIZE)
 
-saved = 'cnn.h5'
+saved = '../data/cnn.h5'
 if os.path.exists(saved):
     model = tf.keras.models.load_model(saved)
 else:

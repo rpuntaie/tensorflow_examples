@@ -193,7 +193,7 @@ reloaded_result_batch = reloaded.predict(image_batch)
 
 EPOCHS = 3
 
-export_path_sm = "./1608112651"
+export_path_sm = "../data/1608112651"
 if os.path.exists(export_path_sm):
     model = tf.keras.models.load_model(export_path_sm)
     history = None
@@ -264,7 +264,7 @@ reload_sm_result_batch = reloaded_sm(image_batch, training=False).numpy()
 
 #t = time.time()
 #export_path_sm = "./{}".format(int(t))
-export_path_sm = "./1608112651"
+export_path_sm = "./data/1608112651"
 if not os.path.exists(export_path_sm):
   print(export_path_sm)
   tf.saved_model.save(model, export_path_sm)

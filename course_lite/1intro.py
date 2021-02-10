@@ -30,7 +30,7 @@ model.fit(x, y, epochs=200, verbose=0)
 
 ## Generate a SavedModel
 
-export_dir = 'saved_model/1'
+export_dir = '../data/tflite_model/1'
 tf.saved_model.save(model, export_dir)
 
 ## Convert the SavedModel to TFLite

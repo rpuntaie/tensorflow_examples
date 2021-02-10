@@ -13,9 +13,9 @@ def savefile():
   fn = info.filename #TODO
   bn = os.path.splitext(os.path.basename(info.filename))[0]
   if info.filename.endswith('.py'):
-    return 'h5'+bn+'%s.h5'%info.lineno
+    return '../data/h5'+bn+'%s.h5'%info.lineno
   else:
-    return 'h5'+bn.strip('>').strip('<')+'%s.h5'%info.lineno
+    return '../data/h5'+bn.strip('>').strip('<')+'%s.h5'%info.lineno
 
 def savefit(m,*a,**ka):
   saved = savefile()

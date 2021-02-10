@@ -127,8 +127,8 @@ def eager4():
   x = tf.Variable(10.)
   checkpoint = tf.train.Checkpoint(x=x)
   x.assign(2.)   # Assign a new value to the variables and save.
-  checkpoint_path = './ckpt/'
-  checkpoint.save('./ckpt/')
+  checkpoint_path = './data/ckpt/'
+  checkpoint.save('./data/ckpt/')
   x.assign(11.)  # Change the variable after saving.
   checkpoint.restore(tf.train.latest_checkpoint(checkpoint_path))
   print(x)  # => 2.0
@@ -140,7 +140,7 @@ def eager5():
     tf.keras.layers.Dense(10)
   ])
   optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
-  checkpoint_dir = './ckpt/'
+  checkpoint_dir = './data/ckpt/'
   if not os.path.exists(checkpoint_dir):
     os.makedirs(checkpoint_dir)
   checkpoint_prefix = os.path.join(checkpoint_dir, "ckpt")
@@ -157,7 +157,7 @@ def eager6():
   m.result()  # => 2.5
   m([8, 9])
   m.result()  # => 5.5
-  logdir = "./tb/"
+  logdir = "./data/tb/"
   writer = tf.summary.create_file_writer(logdir)
   steps = 1000
   with writer.as_default():  # or call writer.set_as_default() before the loop.
@@ -168,7 +168,7 @@ def eager6():
       if step % 100 == 0:
         tf.summary.scalar('loss', loss, step=step)
   """
-  ls tb/
+  ls ./data/tb/
   """
 
 ## Advanced automatic differentiation topics

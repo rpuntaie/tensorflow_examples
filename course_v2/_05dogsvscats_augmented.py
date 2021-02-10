@@ -275,7 +275,7 @@ model.summary()
 
 epochs=100
 
-saved = 'catsvsdogs1.h5'
+saved = '../data/catsvsdogs1.h5'
 historied = saved+'.history.pickle'
 if os.path.exists(saved):
     model = tf.keras.models.load_model(saved)

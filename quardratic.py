@@ -18,7 +18,7 @@ class CustomModel1(keras.Model):
         return {m.name: m.result() for m in self.metrics}
 
 def fitquadratic():
-  #tb_callback = keras.callbacks.TensorBoard(log_dir='log_dir', profile_batch='10, 15')
+  #tb_callback = keras.callbacks.TensorBoard(log_dir='./data/log_dir', profile_batch='10, 15')
   model = CustomModel1()
   model.compile(optimizer="adam", loss="mse", metrics=["mae"])
   n=500 #todo: how to make this converge faster?
