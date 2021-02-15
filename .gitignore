@@ -7,4 +7,5 @@ course_lite/**
 !data/.gitkeep
 !*.py
 !.gitignore
+!*.rst
 
