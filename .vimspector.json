@@ -1,0 +1,13 @@
+{
+    "configurations": {
+        "main":{
+            "adapter": "debugpy",
+            "configuration": {
+                "name": "file",
+                "type": "python",
+                "request": "launch",
+                "program": "${file}"
+            }
+        }
+    }
+}

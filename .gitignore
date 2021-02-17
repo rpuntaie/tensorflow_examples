@@ -1,11 +1,3 @@
 weights*
 checkpoint*
-course_v1/**
-course_v2/**
-course_lite/**
-*
-!data/.gitkeep
-!*.py
-!.gitignore
-!*.rst
-
+data/**

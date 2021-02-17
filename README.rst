@@ -5,3 +5,7 @@ Tensorflow examples from various sources
 I ran the examples from command line,
 or selectively executed parts from within VIM.
 
+The dependencies can be installed with::
+
+    pip install
+

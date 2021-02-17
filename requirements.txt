@@ -1,0 +1,10 @@
+# pip install --user --disable-pip-version-check -r requirements.txt
+
+seaborn
+simpleaudio
+scipy
+sklearn
+pandas
+tb-nightly
+tf-nightly
+tensorflow-datasets
