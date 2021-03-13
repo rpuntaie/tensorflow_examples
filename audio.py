@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-#https://www.tensorflow.org/tutorials/audio/simple_audio
+
+# https://www.tensorflow.org/tutorials/audio/simple_audio
 
 from include_tf import *
 import seaborn as sns

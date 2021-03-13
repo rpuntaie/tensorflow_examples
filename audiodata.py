@@ -13,14 +13,46 @@ As a part of the TensorFlow ecosystem, tensorflow-io package provides quite a
 few useful audio-related APIs that helps easing the preparation and
 augmentation of audio data.
 
-Setup
-Install required Packages, and restart runtime
+Setup::
 
-pip install -U -q tensorflow-io
+    docker pull tfsigio/tfio:nightly
+    docker run -it --rm --name tfio-nightly tfsigio/tfio:nightly
+    # directly places you into Python 3.7 prompt: exit()
+    docker run -it --rm --name tfio-nightly tfsigio/tfio:nightly /bin/bash
 
-Note: I could not test this,
-because I use Python 3.9 and tensorflow_io setup.py does not allow that.
-Todo: later.
+    # but instead for GUI
+    docker run -it \
+        --user=0 \
+        --env="DISPLAY" \
+        --env="QT_X11_NO_MITSHM=1" \
+        --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+        --name tfio-nightly tfsigio/tfio:nightly /bin/bash
+    exit
+    docker ps -a
+    export containerID=$(docker ps -l -q)
+    echo "$containerID"
+    exit
+    xhost +local:`docker inspect --format='{{ .Config.Hostname }}' $containerID`
+    docker start $containerID
+    docker ps
+    docker exec -it tfio-nightly /bin/bash
+
+    pip install matplotlib
+    pip install seaborn
+    apt-get update
+    yes | apt-get install libx11-dev
+    yes | apt-get install tk
+
+    python
+    # from tensorflow.keras.layers.experimental import preprocessing
+    # ... Illegal instruction (core dumped)
+    # python gone
+
+    exit
+    docker rm tfio-nightly
+    docker ps -a
+
+
 
 Usage
 Read an Audio File
@@ -28,7 +60,10 @@ In TensorFlow IO, class tfio.audio.AudioIOTensor allows you to read an audio
 file into a lazy-loaded IOTensor:
 """
 
-from include_tf import *
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+
 import seaborn as sns
 from tensorflow.keras.layers.experimental import preprocessing
 from tensorflow.keras import layers
