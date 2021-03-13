@@ -55,7 +55,8 @@ Setup::
     exit()
 
     exit
-    docker rm tfio-nightly
+    docker stop $containerID
+    docker rm $containerID
     docker ps -a
 
 
