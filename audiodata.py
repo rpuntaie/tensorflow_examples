@@ -35,18 +35,24 @@ Setup::
     xhost +local:`docker inspect --format='{{ .Config.Hostname }}' $containerID`
     docker start $containerID
     docker ps
-    docker exec -it tfio-nightly /bin/bash
 
-    pip install matplotlib
-    pip install seaborn
+    docker exec -it tfio-nightly /bin/bash
     apt-get update
     yes | apt-get install libx11-dev
     yes | apt-get install tk
+    yes | apt-get install gcc
+    yes | apt-get install alsalib
+    yes | apt-get install libasound2-dev
+    pip install matplotlib
+    pip install seaborn
+    pip install ipython
+    pip install simpleaudio
 
     python
     # from tensorflow.keras.layers.experimental import preprocessing
     # ... Illegal instruction (core dumped)
     # python gone
+    exit()
 
     exit
     docker rm tfio-nightly
@@ -63,15 +69,15 @@ file into a lazy-loaded IOTensor:
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-
 import seaborn as sns
-from tensorflow.keras.layers.experimental import preprocessing
-from tensorflow.keras import layers
-from tensorflow.keras import models
 from IPython import display
 import simpleaudio
 
+# core-dump on any of next lines
+from tensorflow.keras.layers.experimental import preprocessing
 import tensorflow_io as tfio
+from tensorflow.keras import layers
+from tensorflow.keras import models
 
 audio = tfio.audio.AudioIOTensor('gs://cloud-samples-tests/speech/brooklyn.flac')
 print(audio)
