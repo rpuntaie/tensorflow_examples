@@ -35,7 +35,6 @@ tfds.disable_progress_bar()
 print(tf.__version__)
 
 # Download Fashion MNIST Dataset
-# TODO: AttributeError: type object 'Split' has no attribute 'ALL'
 (train_examples, validation_examples, test_examples), info = tfds.load(
     'fashion_mnist', with_info=True, as_supervised=True,
     split=('train[:80%]', 'train[80%:]', 'test'))

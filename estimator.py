@@ -46,22 +46,6 @@ def estimator1():
       optimizer='adam',
       loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
       metrics=['accuracy'])
-  """ todo: TypeError: model_to_estimator() got an unexpected keyword argument 'export_outputs'
-  est_mobilenet_v2 = tf.keras.estimator.model_to_estimator(keras_model=estimator_model)
-  IMG_SIZE = 160  # All images will be resized to 160x160
-  def preprocess(image, label):
-    image = tf.cast(image, tf.float32)
-    image = (image/127.5) - 1
-    image = tf.image.resize(image, (IMG_SIZE, IMG_SIZE))
-    return image, label
-  def train_input_fn(batch_size):
-    data = tfds.load('cats_vs_dogs', as_supervised=True)
-    train_data = data['train']
-    train_data = train_data.map(preprocess).shuffle(500).batch(batch_size)
-    return train_data
-  est_mobilenet_v2.train(input_fn=lambda: train_input_fn(32), steps=50)
-  est_mobilenet_v2.evaluate(input_fn=lambda: train_input_fn(32), steps=10)
-  """
 
 def estimator2():
   import tensorflow.compat.v1 as tf_compat

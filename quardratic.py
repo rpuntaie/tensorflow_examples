@@ -21,7 +21,7 @@ def fitquadratic():
   #tb_callback = keras.callbacks.TensorBoard(log_dir='./data/log_dir', profile_batch='10, 15')
   model = CustomModel1()
   model.compile(optimizer="adam", loss="mse", metrics=["mae"])
-  n=500 #todo: how to make this converge faster?
+  n=500
   x = np.random.random((n, ))
   a,b,c = 2,3,4
   y = a*x*x+b*x+c

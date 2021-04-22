@@ -142,23 +142,10 @@ val_dir = os.path.join(base_dir, 'val')
 # `batch_size` and our image size. Remember that the input to our CNN are images
 # of the same size. We therefore have to resize the images in our dataset to the
 # same size.
-# 
-# ### TODO: Set Batch and Image Size
-# In the cell below, create a `batch_size` of 100 images and set a value to
-# `IMG_SHAPE` such that our training data consists of images with width of 150
-# pixels and height of 150 pixels.
 
 batch_size = 100
 IMG_SHAPE = 150 
 
-# ### TODO: Apply Random Horizontal Flip
-# 
-# In the cell below, use ImageDataGenerator to create a transformation that
-# rescales the images by 255 and then applies a random horizontal flip. Then use
-# the `.flow_from_directory` method to apply the above transformation to the
-# images in our training set. Make sure you indicate the batch size, the path to
-# the directory of the training images, the target size for the images, and to
-# shuffle the images. 
 
 image_gen = ImageDataGenerator(rescale=1./255, horizontal_flip=True)
 train_data_gen = image_gen.flow_from_directory(
@@ -186,15 +173,6 @@ def plotImages(images_arr):
 augmented_images = [train_data_gen[0][0][0] for i in range(5)]
 plotImages(augmented_images)
 
-### TODO: Apply Random Rotation
-#
-# In the cell below, use ImageDataGenerator to create a transformation that
-# rescales the images by 255 and then applies a random 45 degree rotation. Then
-# use the `.flow_from_directory` method to apply the above transformation to the
-# images in our training set. Make sure you indicate the batch size, the path to
-# the directory of the training images, the target size for the images, and to
-# shuffle the images. 
-
 image_gen = ImageDataGenerator(rescale=1./255, rotation_range=45)
 train_data_gen = image_gen.flow_from_directory(batch_size=batch_size,
                                                directory=train_dir,
@@ -207,15 +185,6 @@ train_data_gen = image_gen.flow_from_directory(batch_size=batch_size,
 
 augmented_images = [train_data_gen[0][0][0] for i in range(5)]
 plotImages(augmented_images)
-
-# ### TODO: Apply Random Zoom
-# 
-# In the cell below, use ImageDataGenerator to create a transformation that
-# rescales the images by 255 and then applies a random zoom of up to 50%. Then
-# use the `.flow_from_directory` method to apply the above transformation to the
-# images in our training set. Make sure you indicate the batch size, the path to
-# the directory of the training images, the target size for the images, and to
-# shuffle the images. 
 
 image_gen = ImageDataGenerator(rescale=1./255, zoom_range=0.5)
 train_data_gen = image_gen.flow_from_directory(
@@ -232,7 +201,7 @@ train_data_gen = image_gen.flow_from_directory(
 augmented_images = [train_data_gen[0][0][0] for i in range(5)]
 plotImages(augmented_images)
 
-# ### TODO: Put It All Together
+# ### Put It All Together
 # 
 # In the cell below, use ImageDataGenerator to create a transformation that
 # rescales the images by 255 and that applies:
@@ -272,7 +241,7 @@ train_data_gen = image_gen_train.flow_from_directory(
 augmented_images = [train_data_gen[0][0][0] for i in range(5)]
 plotImages(augmented_images)
 
-# ### TODO: Create a Data Generator for the Validation Set
+# ### Create a Data Generator for the Validation Set
 #
 # Generally, we only apply data augmentation to our training examples. So, in the
 # cell below, use ImageDataGenerator to create a transformation that only
@@ -288,7 +257,7 @@ val_data_gen = image_gen_val.flow_from_directory(batch_size=batch_size,
                                                  target_size=(IMG_SHAPE, IMG_SHAPE),
                                                  class_mode='sparse')
 
-# # TODO: Create the CNN
+# Create the CNN
 # 
 # In the cell below, create a convolutional neural network that consists of 3
 # convolution blocks. Each convolutional block contains a `Conv2D` layer followed
@@ -322,7 +291,7 @@ model.add(Dense(512, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(5))
 
-# # TODO: Compile the Model
+# Compile the Model
 # 
 # In the cell below, compile your model using the ADAM optimizer, the sparse
 # cross entropy function as a loss function. We would also like to look at
@@ -333,7 +302,7 @@ model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 
-# # TODO: Train the Model
+# Train the Model
 #
 epochs = 80
 
@@ -359,7 +328,7 @@ else:
     with open(historied,'wb') as h:
         pickle.dump(history,h)
 
-# TODO: Plot Training and Validation Graphs.
+# Plot Training and Validation Graphs.
 # In the cell below, plot the training and validation accuracy/loss graphs.
 epochs_range = range(epochs)
 if history:

@@ -9,8 +9,7 @@ def savefile():
   callerframerecord = inspect.stack()[2]
   frame = callerframerecord[0]
   info = inspect.getframeinfo(frame)
-  #fn = '/home/roland/tmp/tensorflow/course_v2/08commonpattern.py'
-  fn = info.filename #TODO
+  fn = info.filename
   bn = os.path.splitext(os.path.basename(info.filename))[0]
   if info.filename.endswith('.py'):
     return '../data/h5'+bn+'%s.h5'%info.lineno
