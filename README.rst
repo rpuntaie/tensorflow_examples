@@ -7,5 +7,5 @@ or selectively executed parts from within VIM.
 
 The dependencies can be installed with::
 
-    pip install
+    pip install --user --disable-pip-version-check -r requirements.txt
 
